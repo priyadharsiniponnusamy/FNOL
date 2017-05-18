@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<!-- <script th:src="@{/angular/angular.min.js}"> </script> -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+	<script>
+		angular.module('FNOLAPP', []).controller('ExampleController',
+				[ '$scope', function($scope) {
+					$scope.myInput = 'test';
+					 $scope.phoneNumbr = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
+					$scope.submit = function() {
+						// Set the 'submitted' flag to true
+							console.log("Came to Submit");
+						$scope.submitted = true;
+						// Send the form to server
+						// $http.post ...
+					};
+
+				} ]);
+	</script>
+	<style>
+.error {
+	color: red;
+}
+</style>
+
+</header>
+<body>
+	<div ng-app="FNOLAPP" ng-controller="ExampleController">
+		<table width='55%'>
+			<tr align='center'>
+				<td>
+					<table width="100%">
+						<tr bgcolor="#228B22">
+							<td align="center">First Notice of Loss Assignment Form -
+								Auto</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td><p>To submit a New Assignment, please complete this
+									form below and click on the Submit button. Please enter as much
+									information as possible to expedite the investigation process.</p></td>
+						</tr>
+					</table>
+					<table width="100%">
+						<tr bgcolor="#228B22">
+							<td align="center">Client Information</td>
+						</tr>
+					</table>
+					<form name="myForm" ng-submit="submit()">
+						<table width="60%">
+							<tr>
+								<td align="right">* Name of person reporting claim:</td>
+								<td align="left"><input type="text" name="reporteName"
+									ng-model="reporteName" ng-required='true' ng-maxlength="255"></input></td>
+								<td></td>
+								<!-- 	<td ng-hide="myForm.reporteName.$valid">Please provide the
+									First Name</td>
+							 -->
+								<!-- <td>{{myForm.myInput.$valid}}</td> -->
+
+
+							</tr>
+							<tr>
+								<td align="right">* Contact Phone, (xxx) xxx-xxxx:</td>
+								<td>
+									<!-- <input type="text" name="contactPhone"
+									ng-model="contactPhone" ng-required='true'></input>
+									 --> <input type="text" placeholder="+91-636-78658"
+									name="phone" ng-pattern="phoneNumbr" ng-model="phone" />
+
+
+
+								</td>
+
+								<td><span class="error"
+									ng-show="myForm.phone.$error.required">Required!</span> <span
+									class="error" ng-show="myForm.phone.$error.minlength">Phone
+										no not less that 10 char.</span> <span class="error"
+									ng-show="myForm.phone.$error.maxlength">Phone no not
+										more than 11 char.</span> <br /> <span class="error"
+									ng-show="myForm.phone.$error.pattern">Please match
+										pattern [+91-036-78658 || 91-036-78658]</span></td>
+
+
+							</tr>
+
+							<tr>
+								<td align="right">Ext.:</td>
+								<td><input type="text" name="ext" ng-model="ext"></input></td>
+
+							</tr>
+
+							<tr>
+								<td align="right">* You are submitting this claim as <br />(policyholder,
+									claim against policyholder, ect.):
+								</td>
+								<td><input type="text" name="policyholder"
+									ng-model="policyholder" ng-required='true'></input></td>
+
+							</tr>
+						</table>
+
+						<table width="100%">
+							<tr bgcolor="#228B22">
+								<td align="center">Loss Information</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td align="right">* Date of Loss (MM/DD/YYYY):</td>
+								<td><input type="text" name="dateofloss"
+									ng-model="dateofloss" ng-required='true'></input></td>
+
+							</tr>
+							<tr>
+								<td align="right">Time of Loss (xx:xx):</td>
+								<td><input type="text" name="timeofloss"
+									ng-model="timeofloss"></input></td>
+
+							</tr>
+							<tr>
+								<td align="right">* Facts of Accident:</td>
+								<td><input type="textarea" name="factOfAcc"
+									ng-model="factOfAcc" ng-required='true'></input></td>
+
+							</tr>
+							<tr>
+								<td align="right">Police Department</td>
+								<td><input type="text" name="policedept"
+									ng-model="policedept"></input></td>
+
+							</tr>
+							<tr>
+								<td align="right">Police Report Case Number</td>
+								<td><input type="text" name="casenumber"
+									ng-model="casenumber"></input></td>
+							</tr>
+						</table>
+						<table width="100%">
+							<tr bgcolor="#228B22">
+								<td align="center">Policy Holder</td>
+							</tr>
+						</table>
+
+						<table>
+							<tr>
+								<td align="right">Policyholder's Name: (First)</td>
+								<td><input type="text" name="plcyFName"
+									ng-model="plcyFName" ng-required='true'></input></td>
+							</tr>
+							<tr>
+								<td align="right">Policyholder's Name: (LAst)</td>
+								<td><input type="text" name="plcyLName"
+									ng-model="plcyLName" ng-required='true'></input></td>
+							</tr>
+							<tr>
+								<td align="right">Policy Number</td>
+								<td><input type="text" name="plcyNumber"
+									ng-model="plcyNumber" ng-required='true'></input></td>
+							</tr>
+							<tr>
+								<td align="right">Policy Owner Address</td>
+								<td><input type="text" name="plcyAddress"
+									ng-model="plcyAddress"></input></td>
+							</tr>
+							<tr>
+								<td align="right">City</td>
+								<td><input type="text" name="city" ng-model="city"></input></td>
+							</tr>
+							<tr>
+								<td align="right">State</td>
+								<td><input type="text" name="state" ng-model="state"></input></td>
+							</tr>
+							<tr>
+								<td align="right">Zip</td>
+								<td><input type="text" name="zip" ng-model="zip"></input></td>
+							</tr>
+							<tr>
+								<td align="right">Contact Phone</td>
+								<td><input type="text" name="cntPh" ng-model="cntPh"
+									ng-required='true' ng-pattern="phoneNumbr"></input></td>
+								<td><span class="error"
+									ng-show="myForm.cntPh.$error.minlength">Phone no not
+										less that 10 char.</span> <span class="error"
+									ng-show="myForm.cntPh.$error.maxlength">Phone no not
+										more than 11 char.</span> <span class="error"
+									ng-show="myForm.cntPh.$error.pattern">Please match
+										pattern [+91-036-78658 or 91-036-78658 ]</span></td>
+
+							</tr>
+							<tr>
+								<td align="right">Contact Email</td>
+								<td><input type="email" placeholder="Email" name="email"
+									ng-model="email" ng-minlength="3" ng-maxlength="20" /></td>
+								<td><span class="error"
+									ng-show="myForm.email.$error.minlength">Not less than 3
+										char</span> <span class="error" ng-show="myForm.email.$error.email">Invalid
+										Email!</span></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>
+									<button type="submit">Submit</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+</body>
+</html>
